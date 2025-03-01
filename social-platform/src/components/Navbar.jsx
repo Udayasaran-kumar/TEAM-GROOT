@@ -48,21 +48,21 @@ const Navbar = () => {
           </NavLink>
         </div>
         
-        {/* Center - Search Bar */}
-        <div className="flex-grow mx-8 hidden md:block">
-          <form onSubmit={handleSearch} className="relative">
-            <input 
-              type="text" 
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              placeholder="Search posts..." 
-              className="w-full px-3 py-2 text-gray-800 dark:text-gray-200 dark:bg-gray-700 rounded-full pl-10"
-            />
-            <FaSearch className="absolute left-3 top-3 text-gray-500 dark:text-gray-400" />
-          </form>
-        </div>
-        
-        {/* Right - Navigation Links and Profile */}
+       
+          <div className="flex-grow mx-8 hidden md:block">
+            <form onSubmit={handleSearch} className="relative">
+              <input 
+                type="text" 
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                placeholder="Search posts..." 
+                className={`w-full px-3 py-2 text-black ${darkMode ? 'dark:bg-gray-800 dark:text-white' : 'bg-white'} rounded-full pl-10`}
+              />
+              <FaSearch className="absolute left-3 top-3 text-gray-500 dark:text-gray-400" />
+            </form>
+          </div>
+          
+          {/* Right - Navigation Links and Profile */}
         <div className="flex items-center space-x-2 md:space-x-4">
           <NavLink 
             to="/explore" 

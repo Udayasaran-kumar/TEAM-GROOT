@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { useCollaboration } from '../../context/CollaborationContext';
+import { useTheme } from '../../context/ThemeContext';
 import { FaPlus } from 'react-icons/fa';
 import { CreatePostModal, CreatePostPrompt } from './CreatePosts';
 import { PostsGrid } from './Feed';
 
 const Home = () => {
   const [isPostModalOpen, setIsPostModalOpen] = useState(false);
+  const { darkMode } = useTheme();
   
   // Check if useCollaboration is available - if not, provide fallback data
   let contextData = { posts: [], loading: false, error: null };
@@ -69,13 +71,13 @@ const Home = () => {
   };
 
   return (
-    <div className="bg-white dark:bg-gray-900 min-h-screen transition-colors duration-200">
+    <div className={`${darkMode ? 'bg-gray-900 text-white' : 'bg-gray-100 text-gray-900'} min-h-screen transition-colors duration-200`}>
       <div className="container mx-auto px-4 py-6 max-w-3xl">
         <div className="flex justify-between items-center mb-6">
-          <h1 className="text-2xl font-bold text-gray-800 dark:text-gray-100">Feed</h1>
+          <h1 className={`text-2xl font-bold ${darkMode ? 'text-gray-100' : 'text-gray-800'}`}>Feed</h1>
           <button 
             onClick={() => setIsPostModalOpen(true)}
-            className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md flex items-center transition"
+            className={`bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md flex items-center transition ${darkMode ? 'shadow-blue-900/30' : ''}`}
           >
             <FaPlus className="mr-2" /> Create Post
           </button>
