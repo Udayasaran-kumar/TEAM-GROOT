@@ -69,13 +69,13 @@ const Home = () => {
   };
 
   return (
-    <div className="bg-gray-100 min-h-screen">
+    <div className="bg-white dark:bg-gray-900 min-h-screen transition-colors duration-200">
       <div className="container mx-auto px-4 py-6 max-w-3xl">
         <div className="flex justify-between items-center mb-6">
-          <h1 className="text-2xl font-bold text-gray-800">Feed</h1>
+          <h1 className="text-2xl font-bold text-gray-800 dark:text-gray-100">Feed</h1>
           <button 
             onClick={() => setIsPostModalOpen(true)}
-            className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 flex items-center"
+            className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md flex items-center transition"
           >
             <FaPlus className="mr-2" /> Create Post
           </button>

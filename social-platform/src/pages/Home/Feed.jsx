@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { FaThumbsUp, FaComment, FaTrash } from 'react-icons/fa';
 import { CommentSection } from './Comments';
+import { useTheme } from '../../context/ThemeContext';
 
 const Post = ({ post, onDelete, onToggleLike, onAddComment, onLoadComments }) => {
   const [isLiked, setIsLiked] = useState(false);
   const [commentText, setCommentText] = useState('');
   const [showComments, setShowComments] = useState(false);
   const [comments, setComments] = useState([]);
+  const { darkMode } = useTheme();
   
   const handleToggleLike = () => {
     onToggleLike(post.id, post.likes, isLiked);
@@ -44,25 +46,25 @@ const Post = ({ post, onDelete, onToggleLike, onAddComment, onLoadComments }) =>
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-4 mb-4 hover:shadow-lg transition-shadow">
+    <div className={`${darkMode ? 'bg-gray-800 text-gray-100' : 'bg-white text-gray-800'} rounded-lg shadow-md p-4 mb-4 hover:shadow-lg transition-all duration-200`}>
       <div className="flex justify-between items-start">
-        <h3 className="text-gray-800 font-semibold mb-1">
-          <span className="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full mr-2">
+        <h3 className="font-semibold mb-1">
+          <span className={`${darkMode ? 'bg-blue-900 text-blue-200' : 'bg-blue-100 text-blue-800'} text-xs px-2 py-1 rounded-full mr-2`}>
             #{post.id ? post.id.slice(0, 6) : 'unknown'}
           </span>
-          <span className="text-gray-500 text-xs">
+          <span className={`${darkMode ? 'text-gray-400' : 'text-gray-500'} text-xs`}>
             {new Date(post.createdAt).toLocaleString()}
           </span>
         </h3>
         <button 
           onClick={() => onDelete(post.id)} 
-          className="text-gray-400 hover:text-red-600 p-1 rounded-full hover:bg-red-50 transition"
+          className={`${darkMode ? 'text-gray-500 hover:text-red-400 hover:bg-gray-700' : 'text-gray-400 hover:text-red-600 hover:bg-red-50'} p-1 rounded-full transition`}
         >
           <FaTrash size={14} />
         </button>
       </div>
       
-      <p className="text-gray-800 my-2 line-clamp-3">{post.content}</p>
+      <p className="my-2 line-clamp-3">{post.content}</p>
       
       {post.imageUrl && (
         <div className="relative h-40 overflow-hidden rounded-md mb-3">
@@ -75,17 +77,21 @@ const Post = ({ post, onDelete, onToggleLike, onAddComment, onLoadComments }) =>
         </div>
       )}
       
-      <div className="flex justify-between items-center text-gray-500 border-t border-gray-100 pt-3 mt-2">
+      <div className={`flex justify-between items-center ${darkMode ? 'text-gray-400 border-gray-700' : 'text-gray-500 border-gray-100'} border-t pt-3 mt-2`}>
         <button 
           onClick={handleToggleLike}
-          className={`flex items-center px-3 py-1 rounded-full hover:bg-gray-100 transition ${isLiked ? 'text-blue-600' : ''}`}
+          className={`flex items-center px-3 py-1 rounded-full ${
+            darkMode 
+              ? `${isLiked ? 'text-blue-400' : ''} hover:bg-gray-700` 
+              : `${isLiked ? 'text-blue-600' : ''} hover:bg-gray-100`
+          } transition`}
         >
           <FaThumbsUp className="mr-1" /> {post.likes || 0}
         </button>
         
         <button 
           onClick={loadComments}
-          className="flex items-center px-3 py-1 rounded-full hover:bg-gray-100 transition"
+          className={`flex items-center px-3 py-1 rounded-full ${darkMode ? 'hover:bg-gray-700' : 'hover:bg-gray-100'} transition`}
         >
           <FaComment className="mr-1" /> Comments
         </button>
@@ -98,24 +104,27 @@ const Post = ({ post, onDelete, onToggleLike, onAddComment, onLoadComments }) =>
         commentText={commentText}
         setCommentText={setCommentText}
         handleAddComment={handleAddComment}
+        darkMode={darkMode}
       />
     </div>
   );
 };
 
 const PostsGrid = ({ posts, onDelete, onToggleLike, onAddComment, onLoadComments, loading, error }) => {
+  const { darkMode } = useTheme();
+
   if (loading) {
     return (
       <div className="text-center py-10">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-        <p className="mt-3 text-gray-600">Loading posts...</p>
+        <div className={`animate-spin rounded-full h-12 w-12 border-b-2 ${darkMode ? 'border-blue-400' : 'border-blue-600'} mx-auto`}></div>
+        <p className={`mt-3 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>Loading posts...</p>
       </div>
     );
   }
   
   if (error) {
     return (
-      <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 rounded">
+      <div className={`${darkMode ? 'bg-red-900 border-red-700 text-red-200' : 'bg-red-100 border-red-500 text-red-700'} border-l-4 p-4 rounded`}>
         <p className="font-bold">Error</p>
         <p>{error}</p>
       </div>
@@ -124,8 +133,8 @@ const PostsGrid = ({ posts, onDelete, onToggleLike, onAddComment, onLoadComments
   
   if (!posts || posts.length === 0) {
     return (
-      <div className="text-center py-10 bg-white rounded-lg shadow-md">
-        <p className="text-gray-600">No posts yet. Be the first to create one!</p>
+      <div className={`text-center py-10 ${darkMode ? 'bg-gray-800 text-gray-300' : 'bg-white text-gray-600'} rounded-lg shadow-md`}>
+        <p>No posts yet. Be the first to create one!</p>
       </div>
     );
   }

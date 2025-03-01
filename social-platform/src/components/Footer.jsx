@@ -1,31 +1,33 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaTwitter, FaFacebook, FaInstagram, FaLinkedin, FaHeart } from 'react-icons/fa';
+import { useTheme } from '../context/ThemeContext';
 
 const Footer = () => {
+  const { darkMode } = useTheme();
+  
   return (
-    <footer className="bg-gray-900 text-white py-8">
+    <footer className={`${darkMode ? 'bg-gray-900' : 'bg-white-800'} text-white py-8 transition-colors duration-200`}>
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-center mb-8">
           <div className="mb-6 md:mb-0">
             <h3 className="text-xl font-bold mb-2 flex items-center">
-              <span className="bg-blue-600 text-white p-1 rounded mr-2">C</span>
-              CollabHub
+              <span className="bg-blue-600 text-white p-1 rounded mr-2">CollabHub</span>
             </h3>
             <p className="text-gray-400">Connect. Collaborate. Create.</p>
           </div>
           
           <div className="flex space-x-4">
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white p-2 hover:bg-gray-800 rounded-full transition">
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white p-2 hover:bg-gray-700 dark:hover:bg-gray-800 rounded-full transition">
               <FaTwitter size={20} />
             </a>
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white p-2 hover:bg-gray-800 rounded-full transition">
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white p-2 hover:bg-gray-700 dark:hover:bg-gray-800 rounded-full transition">
               <FaFacebook size={20} />
             </a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white p-2 hover:bg-gray-800 rounded-full transition">
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white p-2 hover:bg-gray-700 dark:hover:bg-gray-800 rounded-full transition">
               <FaInstagram size={20} />
             </a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white p-2 hover:bg-gray-800 rounded-full transition">
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white p-2 hover:bg-gray-700 dark:hover:bg-gray-800 rounded-full transition">
               <FaLinkedin size={20} />
             </a>
           </div>

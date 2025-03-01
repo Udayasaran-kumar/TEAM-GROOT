@@ -1,6 +1,37 @@
-
 @import "tailwindcss";
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: light dark;
+}
+
+/* Ensure transitions work smoothly */
+.transition-colors {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
+}
+
+/* Make sure body extends to full height for dark backgrounds */
+body {
+  min-height: 100vh;
+  margin: 0;
+}
+
+/* Default light mode colors */
+body {
+  background-color: white;
+  color: #111827;
+}
+
+/* Dark mode colors */
+.dark body {
+  background-color: #111827;
+  color: #f3f4f6;
+}
