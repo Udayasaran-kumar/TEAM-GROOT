@@ -160,7 +160,7 @@ const Navbar = () => {
       
       {/* Mobile Navigation */}
       <div className="md:hidden flex justify-around py-2 border-t border-blue-700 dark:border-gray-700">
-        <NavLink 
+        {/* <NavLink 
           to="/" 
           className={({ isActive }) => 
             `p-2 rounded-md flex flex-col items-center text-xs ${
@@ -172,7 +172,7 @@ const Navbar = () => {
         >
           <FaHome className="mb-1 text-lg" />
           Home
-        </NavLink>
+        </NavLink> */}
         
         <NavLink 
           to="/explore" 
