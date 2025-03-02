@@ -1,69 +1,5 @@
-// import { useState, useContext } from "react";
-// import { AuthContext } from "../context/AuthContext";
-
-// const Login = () => {
-//   const [username, setUsername] = useState("");
-//   const [password, setPassword] = useState("");
-//   const [error, setError] = useState(null);
-//   const [loading, setLoading] = useState(false);
-
-//   const { login } = useContext(AuthContext);
-
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     setLoading(true);
-//     setError(null);
-
-//     const success = await login(username, password);
-//     if (!success) {
-//       setError("Invalid username or password");
-//     }
-
-//     setLoading(false);
-//   };
-
-//   return (
-//     <div className="flex justify-center items-center min-h-screen">
-//       <form onSubmit={handleSubmit} className="bg-white p-6 shadow-lg rounded-md w-96">
-//         <h2 className="text-xl mb-4 text-center">Login</h2>
-
-//         {error && <p className="text-red-500 text-sm mb-2">{error}</p>}
-
-//         <input
-//           type="text"
-//           placeholder="Username"
-//           className="w-full p-2 mb-2 border rounded"
-//           value={username}
-//           onChange={(e) => setUsername(e.target.value)}
-//           required
-//         />
-
-//         <input
-//           type="password"
-//           placeholder="Password"
-//           className="w-full p-2 mb-2 border rounded"
-//           value={password}
-//           onChange={(e) => setPassword(e.target.value)}
-//           required
-//         />
-
-//         <button
-//           className="w-full bg-blue-600 text-white py-2 rounded"
-//           type="submit"
-//           disabled={loading}
-//         >
-//           {loading ? "Logging in..." : "Login"}
-//         </button>
-//       </form>
-//     </div>
-//   );
-// };
-
-// export default Login;
-
-import { useState, } from "react";
-// import { AuthContext } from "../context/AuthContext";
+import { useState } from "react";
+import { Link } from "react-router-dom"; // Import Link for navigation
 import { useAuth } from "../context/AuthContext";
 
 const Login = () => {
@@ -134,6 +70,19 @@ const Login = () => {
             {loading ? "Signing in..." : "Sign in"}
           </button>
         </form>
+
+        {/* "Don't have an account? Sign up" Link */}
+        <div className="mt-6 text-center">
+          <p className="text-sm text-gray-600">
+            Don't have an account?{" "}
+            <Link
+              to="/register"
+              className="text-indigo-600 hover:text-indigo-500 font-semibold"
+            >
+              Sign up
+            </Link>
+          </p>
+        </div>
       </div>
     </div>
   );
