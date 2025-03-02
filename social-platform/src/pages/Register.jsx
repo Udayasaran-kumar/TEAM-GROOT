@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom"; // ✅ Import Link for navigation
 
 const Register = () => {
   const [username, setUsername] = useState("");
@@ -67,6 +68,17 @@ const Register = () => {
         >
           Register
         </button>
+
+        {/* ✅ Add "Have an account? Sign in" link */}
+        <p className="text-center text-gray-600 mt-4">
+          Have an account?{" "}
+          <Link
+            to="/login"
+            className="text-indigo-600 font-semibold hover:underline"
+          >
+            Sign in
+          </Link>
+        </p>
       </form>
     </div>
   );
