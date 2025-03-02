@@ -6,4 +6,4 @@ const Collaborate = () => {
   );
 };
 
-export default Collaborate; 
+export default Collaborate; // ✅ Ensure this line is present

@@ -18,8 +18,8 @@ function Footer() {
             { name: 'Facebook', icon: 'fab fa-facebook' },
             { name: 'Instagram', icon: 'fab fa-instagram' },
             { name: 'Twitter', icon: 'fab fa-twitter' },
-            { name: 'GitHub', icon: 'fab fa-github' }, // Added GitHub
-            { name: 'Globe', icon: 'fas fa-globe' } // Added Globe
+            { name: 'GitHub', icon: 'fab fa-github' },
+            { name: 'Globe', icon: 'fas fa-globe' }
           ].map(({ name, icon }) => (
             <a key={name} href="#" className="text-gray-400 hover:text-gray-500">
               <span className="sr-only">{name}</span>

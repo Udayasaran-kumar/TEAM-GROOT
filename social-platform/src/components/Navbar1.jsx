@@ -5,7 +5,7 @@ import { useAuth } from "../context/AuthContext";
 const Navbar = () => {
   const { user, logout } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const sidebarRef = useRef(null); // Ref for the sidebar
+  const sidebarRef = useRef(null);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -169,7 +169,7 @@ const Navbar = () => {
               )}
             </div>
             <p className="my-4 text-xs text-center text-gray-400">
-              <span>Copyright © 2021</span>
+              <span>Copyright © 2025</span>
             </p>
           </div>
         </nav>

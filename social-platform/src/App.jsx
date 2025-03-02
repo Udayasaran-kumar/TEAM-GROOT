@@ -6,8 +6,8 @@ import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import Explore from "./pages/Explore";
 import Collaborate from "./pages/Collaborate";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
+import Navbar from "./components/Navbar1";
+import Footer from "./components/Footer1";
 import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
