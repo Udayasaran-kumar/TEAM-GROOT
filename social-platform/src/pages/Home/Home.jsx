@@ -53,11 +53,14 @@ const Home = () => {
     }
   };
 
-  const handleAddComment = (postId, commentData) => {
+  const handleAddComment = async (postId, commentData) => {
     try {
-      addComment(postId, commentData);
+      // Return the new comment so it can be used for immediate UI updates
+      const newComment = await addComment(postId, commentData);
+      return newComment;
     } catch (err) {
       console.error("Error adding comment:", err);
+      return null;
     }
   };
 
