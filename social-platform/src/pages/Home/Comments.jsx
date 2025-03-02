@@ -18,7 +18,8 @@ const CommentSection = ({
   commentText, 
   setCommentText, 
   handleAddComment,
-  darkMode 
+  darkMode,
+  isAddingComment
 }) => {
   if (!showComments) return null;
   
@@ -26,7 +27,11 @@ const CommentSection = ({
     <div className={`mt-3 ${darkMode ? 'bg-gray-700' : 'bg-gray-50'} rounded-md p-3`}>
       <h4 className={`font-medium mb-2 text-sm ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>Comments</h4>
       <div className="max-h-40 overflow-y-auto">
-        {comments && comments.length > 0 ? (
+        {isAddingComment ? (
+          <div className="flex justify-center py-2">
+            <div className={`animate-pulse h-2 w-24 rounded ${darkMode ? 'bg-gray-600' : 'bg-gray-300'}`}></div>
+          </div>
+        ) : comments && comments.length > 0 ? (
           comments.map(comment => (
             <Comment key={comment.id} comment={comment} darkMode={darkMode} />
           ))
@@ -35,7 +40,7 @@ const CommentSection = ({
         )}
       </div>
       
-      <form onSubmit={(e) => handleAddComment(e, postId)} className="mt-3 flex">
+      <form onSubmit={handleAddComment} className="mt-3 flex">
         <input
           type="text"
           placeholder="Add a comment..."
@@ -46,12 +51,16 @@ const CommentSection = ({
               ? 'border-gray-600 bg-gray-800 text-gray-200 focus:ring-blue-600' 
               : 'border-gray-300 focus:ring-blue-500 text-gray-800'
           } rounded-l-md focus:outline-none focus:ring-1`}
+          disabled={isAddingComment}
         />
         <button 
           type="submit" 
-          className="bg-blue-600 text-white px-3 rounded-r-md hover:bg-blue-700 text-sm"
+          className={`bg-blue-600 text-white px-3 rounded-r-md hover:bg-blue-700 text-sm transition ${
+            isAddingComment ? 'opacity-50 cursor-not-allowed' : ''
+          }`}
+          disabled={isAddingComment || !commentText.trim()}
         >
-          Post
+          {isAddingComment ? 'Posting...' : 'Post'}
         </button>
       </form>
     </div>

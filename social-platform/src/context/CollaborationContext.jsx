@@ -10,7 +10,7 @@ import {
   fetchCommentsForPost
 } from '../services/postService';
 
-// Fix the import path to match the actual location
+// Redux actions
 import {
   setPosts,
   addPost,
@@ -94,7 +94,7 @@ export const CollaborationProvider = ({ children }) => {
     try {
       const newComment = await addComment(postId, commentData);
       dispatch(addNewComment(newComment));
-      return newComment;
+      return newComment; // Return the new comment for immediate UI updates
     } catch (err) {
       setError('Failed to add comment. Please try again.');
       throw err;
